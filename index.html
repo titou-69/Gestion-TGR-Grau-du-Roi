@@ -1,47 +1,84 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Gestion | TGR</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Gestion | TGR</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+
 <header>
-  <h1>Gestion des Transports</h1>
-  <p>Application simple (GitHub Pages)</p>
+<h1>Réseau de Transports Urbains</h1>
+<nav>
+<a href="#lignes">Lignes</a>
+<a href="#materiel">Matériel roulant</a>
+<a href="#depots">Dépôts</a>
+<a href="#carte">Carte</a>
+</nav>
 </header>
 
-<main>
-  <section>
-    <h2>Ajouter une ligne</h2>
-    <form id="transportForm">
-      <input type="text" id="line" placeholder="Nom de la ligne" required>
-      <select id="type">
-        <option value="Bus">Bus</option>
-        <option value="Tram">Tram</option>
-        <option value="Métro">Métro</option>
-      </select>
-      <input type="text" id="schedule" placeholder="Horaires (ex: 6h - 22h)" required>
-      <button type="submit">Ajouter</button>
-    </form>
-  </section>
 
-  <section>
-    <h2>Lignes existantes</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Ligne</th>
-          <th>Type</th>
-          <th>Horaires</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody id="transportList"></tbody>
-    </table>
-  </section>
+<main>
+
+
+<section id="lignes">
+<h2>Lignes</h2>
+<form id="ligneForm">
+<input id="ligneNom" placeholder="Nom de la ligne" required>
+<select id="ligneType">
+<option>Bus</option>
+<option>Tram</option>
+<option>Métro</option>
+</select>
+<input id="ligneHoraire" placeholder="Horaires" required>
+<button>Ajouter</button>
+</form>
+<ul id="ligneList"></ul>
+</section>
+
+
+<section id="materiel">
+<h2>Matériel roulant</h2>
+<form id="materielForm">
+<input id="matNom" placeholder="Nom / Série" required>
+<select id="matType">
+<option>Bus</option>
+<option>Tram</option>
+<option>Métro</option>
+</select>
+<input id="matDepot" placeholder="Dépôt affecté" required>
+<button>Ajouter</button>
+</form>
+<ul id="materielList"></ul>
+</section>
+
+
+<section id="depots">
+<h2>Dépôts</h2>
+<form id="depotForm">
+<input id="depotNom" placeholder="Nom du dépôt" required>
+<input id="depotVille" placeholder="Ville" required>
+<button>Ajouter</button>
+</form>
+<ul id="depotList"></ul>
+</section>
+
+
+<section id="carte">
+<h2>Carte des lignes</h2>
+<iframe src="https://umap.openstreetmap.fr/fr/map/carte-exemple_100000"></iframe>
+</section>
+
+
 </main>
+
+
+<footer>
+© 2026 – Gestion transports urbains
+</footer>
+
 
 <script src="script.js"></script>
 </body>
