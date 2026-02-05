@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestion des Transports en Commun</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>Gestion des Transports</h1>
+  <p>Application simple (GitHub Pages)</p>
+</header>
+
+<main>
+  <section>
+    <h2>Ajouter une ligne</h2>
+    <form id="transportForm">
+      <input type="text" id="line" placeholder="Nom de la ligne" required>
+      <select id="type">
+        <option value="Bus">Bus</option>
+        <option value="Tram">Tram</option>
+        <option value="Métro">Métro</option>
+      </select>
+      <input type="text" id="schedule" placeholder="Horaires (ex: 6h - 22h)" required>
+      <button type="submit">Ajouter</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>Lignes existantes</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Ligne</th>
+          <th>Type</th>
+          <th>Horaires</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="transportList"></tbody>
+    </table>
+  </section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
