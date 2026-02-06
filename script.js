@@ -1,74 +1,70 @@
 function save(k,d){localStorage.setItem(k,JSON.stringify(d));}
-opt.textContent=l.nom;
-matLigne.appendChild(opt);
-});
-}
+// ---------- BUS ----------
+const busForm=document.getElementById("busForm");
+const busList=document.getElementById("busList");
 
 
-ligneForm.onsubmit=e=>{
+busForm.onsubmit=e=>{
 e.preventDefault();
-lignes.push({nom:ligneNom.value,horaire:ligneHoraire.value});
-save("lignes",lignes);
-ligneForm.reset();
+bus.push({
+num:busNum.value,
+constructeur:busConstructeur.value,
+modele:busModele.value,
+ligne:busLigne.value,
+depot:busDepot.value
+});
+save("bus",bus);
+busForm.reset();
 renderAll();
 };
 
 
-// ---------- MATERIEL ----------
-const matForm=document.getElementById("materielForm");
-const matList=document.getElementById("materielList");
-
-
-function renderMateriel(){
-matList.innerHTML="";
-materiel.forEach((m,i)=>{
+function renderBus(){
+busList.innerHTML="";
+bus.forEach(b=>{
 const li=document.createElement("li");
-li.textContent=`${m.nom} | Dépôt:${m.depot} | Ligne:${m.ligne||"—"} | ${m.etat}`;
-
-
-const sel=document.createElement("select");
-["En service","Réserve","Panne"].forEach(e=>{
-const o=document.createElement("option");o.textContent=e;o.selected=e===m.etat;sel.appendChild(o);
-});
-sel.onchange=()=>{m.etat=sel.value;save("materiel",materiel);};
-
-
-const b=document.createElement("button");b.textContent="✖";
-b.onclick=()=>{materiel.splice(i,1);save("materiel",materiel);renderAll();};
-
-
-li.append(sel,b);
-matList.appendChild(li);
+li.innerHTML=`<a href="bus.html?num=${b.num}">${b.num}</a> – ${b.modele} (${b.ligne})`;
+busList.appendChild(li);
 });
 }
 
 
-matForm.onsubmit=e=>{
-e.preventDefault();
-materiel.push({
-nom:matNom.value,
-depot:matDepot.value,
-ligne:matLigne.value,
-etat:matEtat.value
+// ---------- PAGE BUS ----------
+function renderBusPage(){
+const params=new URLSearchParams(location.search);
+const num=params.get("num");
+const b=bus.find(x=>x.num===num);
+if(!b) return;
+document.getElementById("busTitle").textContent=`Bus ${b.num}`;
+document.getElementById("busDetails").innerHTML=`
+<p><b>Constructeur :</b> ${b.constructeur}</p>
+<p><b>Modèle :</b> ${b.modele}</p>
+<p><b>Ligne :</b> ${b.ligne}</p>
+<p><b>Dépôt :</b> ${b.depot}</p>`;
+}
+
+
+// ---------- SELECTS ----------
+function refreshSelects(){
+[ligneDepot,busDepot].forEach(s=>{
+s.innerHTML="";
+depots.forEach(d=>{
+const o=document.createElement("option");o.textContent=d.nom;s.appendChild(o);
 });
-save("materiel",materiel);
-matForm.reset();
-renderAll();
-};
-
-
-// ---------- STATS ----------
-const statsList=document.getElementById("statsList");
-function renderStats(){
-statsList.innerHTML="";
+});
+busLigne.innerHTML="";
 lignes.forEach(l=>{
-const count=materiel.filter(m=>m.ligne===l.nom).length;
-const li=document.createElement("li");
-li.textContent=`${l.nom} : ${count} véhicule(s)`;
-statsList.appendChild(li);
+const o=document.createElement("option");o.textContent=l.nom;busLigne.appendChild(o);
 });
 }
 
 
-function renderAll(){renderLignes();renderMateriel();renderStats();}
+function renderAll(){
+refreshSelects();
+renderDepotView();
+renderLignes();
+renderBus();
+}
+
+
 renderAll();
