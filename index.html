@@ -2,20 +2,17 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Gestion des Transports Urbains</title>
+<title>Gestion du Réseau de Transport</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-
 <header>
-<h1>Réseau de Transports Urbains</h1>
+<h1>Gestion du Réseau</h1>
 <nav>
+<a href="#depots">Dépôts</a>
 <a href="#lignes">Lignes</a>
 <a href="#materiel">Matériel</a>
-<a href="#stats">Statistiques</a>
-<a href="#carte">Carte</a>
 </nav>
 </header>
 
@@ -23,60 +20,76 @@
 <main>
 
 
-<section id="lignes">
-<h2>Lignes de bus</h2>
-<form id="ligneForm">
-<input id="ligneNom" placeholder="Nom de la ligne" required>
-<input id="ligneHoraire" placeholder="Horaires" required>
-<button>Ajouter</button>
+<!-- DEPOTS -->
+<section id="depots">
+<h2>Création d’un dépôt</h2>
+<form id="depotForm">
+<input id="depotNom" placeholder="Nom du dépôt" required>
+<input id="depotExploitant" placeholder="Exploitant" required>
+<button>Créer</button>
 </form>
+
+
+<h3>Vue du matériel par dépôt</h3>
+<ul id="depotView"></ul>
+</section>
+
+
+<!-- LIGNES -->
+<section id="lignes">
+<h2>Création d’une ligne</h2>
+<form id="ligneForm">
+<input id="ligneNom" maxlength="50" placeholder="Nom de la ligne" required>
+<input id="ligneT1" maxlength="100" placeholder="Terminus 1" required>
+<input id="ligneT2" maxlength="100" placeholder="Terminus 2" required>
+
+
+<select id="ligneDepot"></select>
+<select id="ligneType">
+<option>Bus</option>
+<option>Tram-train</option>
+<option>Ferry</option>
+</select>
+
+
+<button>Créer</button>
+</form>
+
+
 <ul id="ligneList"></ul>
 </section>
 
 
+<!-- MATERIEL -->
 <section id="materiel">
-<h2>Matériel roulant</h2>
-<form id="materielForm">
-<input id="matNom" placeholder="Numéro / Série" required>
-<input id="matDepot" placeholder="Dépôt" required>
+<h2>Création d’un bus</h2>
+<form id="busForm">
+<input id="busNum" maxlength="4" placeholder="N° de carrosserie" required>
 
 
-<select id="matLigne">
-<option value="">— Ligne —</option>
+<select id="busConstructeur">
+<option>Iveco</option>
+<option>Heuliez Bus</option>
+<option>HESS</option>
 </select>
 
 
-<select id="matEtat">
-<option>En service</option>
-<option>Réserve</option>
-<option>Panne</option>
-</select>
+<input id="busModele" maxlength="100" placeholder="Modèle" required>
 
 
-<button>Ajouter</button>
+<select id="busLigne"></select>
+<select id="busDepot"></select>
+
+
+<button>Créer</button>
 </form>
-<ul id="materielList"></ul>
-</section>
 
 
-<section id="stats">
-<h2>Vue par ligne</h2>
-<ul id="statsList"></ul>
-</section>
-
-
-<section id="carte">
-<h2>Carte du réseau</h2>
-<iframe src="https://umap.openstreetmap.fr/fr/map/projets-transports-grau-du-roi_1156972?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&editMode=disabled&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=none&captionBar=false&captionMenus=true"></iframe>
+<ul id="busList"></ul>
 </section>
 
 
 </main>
-
-
-<footer>
-© 2026 – Gestion des transports urbains
-</footer>
 
 
 <script src="script.js"></script>
