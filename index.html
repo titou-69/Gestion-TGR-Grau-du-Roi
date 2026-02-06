@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Gestion | TGR</title>
+<title>Gestion des Transports Urbains</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -13,8 +13,8 @@
 <h1>Réseau de Transports Urbains</h1>
 <nav>
 <a href="#lignes">Lignes</a>
-<a href="#materiel">Matériel roulant</a>
-<a href="#depots">Dépôts</a>
+<a href="#materiel">Matériel</a>
+<a href="#stats">Statistiques</a>
 <a href="#carte">Carte</a>
 </nav>
 </header>
@@ -24,14 +24,9 @@
 
 
 <section id="lignes">
-<h2>Lignes</h2>
+<h2>Lignes de bus</h2>
 <form id="ligneForm">
 <input id="ligneNom" placeholder="Nom de la ligne" required>
-<select id="ligneType">
-<option>Bus</option>
-<option>Tram</option>
-<option>Métro</option>
-</select>
 <input id="ligneHoraire" placeholder="Horaires" required>
 <button>Ajouter</button>
 </form>
@@ -42,33 +37,37 @@
 <section id="materiel">
 <h2>Matériel roulant</h2>
 <form id="materielForm">
-<input id="matNom" placeholder="Nom / Série" required>
-<select id="matType">
-<option>Bus</option>
-<option>Tram</option>
-<option>Métro</option>
+<input id="matNom" placeholder="Numéro / Série" required>
+<input id="matDepot" placeholder="Dépôt" required>
+
+
+<select id="matLigne">
+<option value="">— Ligne —</option>
 </select>
-<input id="matDepot" placeholder="Dépôt affecté" required>
+
+
+<select id="matEtat">
+<option>En service</option>
+<option>Réserve</option>
+<option>Panne</option>
+</select>
+
+
 <button>Ajouter</button>
 </form>
 <ul id="materielList"></ul>
 </section>
 
 
-<section id="depots">
-<h2>Dépôts</h2>
-<form id="depotForm">
-<input id="depotNom" placeholder="Nom du dépôt" required>
-<input id="depotVille" placeholder="Ville" required>
-<button>Ajouter</button>
-</form>
-<ul id="depotList"></ul>
+<section id="stats">
+<h2>Vue par ligne</h2>
+<ul id="statsList"></ul>
 </section>
 
 
 <section id="carte">
-<h2>Carte des lignes</h2>
-<iframe src="<iframe style="width: 100%; height: 300px; border: 0;" allowfullscreen allow="geolocation" src="//umap.openstreetmap.fr/fr/map/projets-transports-grau-du-roi_1156972?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&editMode=disabled&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=none&captionBar=false&captionMenus=true"></iframe><p><a href="//umap.openstreetmap.fr/fr/map/projets-transports-grau-du-roi_1156972?scaleControl=false&miniMap=false&scrollWheelZoom=true&zoomControl=true&editMode=disabled&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=none&captionBar=false&captionMenus=true">Voir en plein écran</a></p>"></iframe>
+<h2>Carte du réseau</h2>
+<iframe src="https://umap.openstreetmap.fr/fr/map/projets-transports-grau-du-roi_1156972?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&editMode=disabled&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=none&captionBar=false&captionMenus=true"></iframe>
 </section>
 
 
@@ -76,7 +75,7 @@
 
 
 <footer>
-© 2026 – Gestion transports urbains
+© 2026 – Gestion des transports urbains
 </footer>
 
 
